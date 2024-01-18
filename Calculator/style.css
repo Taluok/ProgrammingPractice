@@ -19,7 +19,7 @@ body{
     background-color: palevioletred;
     padding:15px;
     border-radius: 32px;
-    box-shadow: 15px 10px 0px 5px #0000005a;
+    box-shadow: 5px 5px 10px -3px #0000005a;
 }
 button{
     cursor: pointer;
