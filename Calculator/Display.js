@@ -6,12 +6,7 @@ class Display {
         this.operationType = undefined; // Guarda el tipo de operación del usuario
         this.previousValue = '';
         this.actualValue = '';
-        this.signs = {
-            sum: '+',
-            division: '%',
-            multiplication: 'x',
-            substraction: '-'
-        };
+        this.signs = { sum: '+', division: '%', multiplication: 'x', substraction: '-' };
     }
 
     deleted() { //se encarga de eliminar el ultimo caracter de actualValue
@@ -26,15 +21,17 @@ class Display {
         this.printValues();
     }
 
-    addNumber(number) { //lo utilize para agregar un número (o un punto decimal) a actualValue, siempre y cuando no haya otro punto decimal presente.
+    //lo utilize para agregar un número (o un punto decimal) a actualValue, siempre y cuando no haya otro punto decimal presente.
+    addNumber(number) {
         if (number === '.' && this.actualValue.includes('.')) return;
-        this.actualValue = this.actualValue.toString() + number.toString();
+        this.actualValue.push(number.toString());
         this.printValues();
     }
     //Después de actualizar actualValue, se llama a printValues para reflejar los cambios en la interfaz de usuario.
-    printValues() { // actualiza los elementos DOM (displayPreviousValue y displayActualValue) con los valores actuales de previousValue, operationType, y actualValue.
-        this.displayActualValue.textContent = this.actualValue;
-        this.displayPreviousValue.textContent = `${this.previousValue} ${this.signs[this.operationType] || ''}`; //Utiliza la propiedad signs para obtener el símbolo asociado al tipo de operación actual.
+    // actualiza los elementos DOM (displayPreviousValue y displayActualValue) con los valores actuales de previousValue, operationType, y actualValue.
+    printValues() {
+        this.displayActualValue.textContent = this.actualValue.join('');
+        this.displayPreviousValue.textContent = `${this.previousValue} ${this.signs[this.operationType] || ''}`;
     }
 
     calculate() {
